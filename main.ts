@@ -14,7 +14,7 @@ let left = 0
 let right = 0
 let forward = 0
 let backward = 0
-radio.setGroup(92)
+radio.setGroup(80)
 pins.setPull(DigitalPin.P13, PinPullMode.PullUp)
 pins.setPull(DigitalPin.P14, PinPullMode.PullUp)
 pins.setPull(DigitalPin.P15, PinPullMode.PullUp)
@@ -35,11 +35,11 @@ basic.forever(function () {
         rotor = SERVO_STALL
     }
     if (forward == PRESSED && backward == RELEASED) {
-        spool_inner = SERVO_STALL + HORIZONTAL_SPEED
-        spool_outer = SERVO_STALL - HORIZONTAL_SPEED
-    } else if (forward == RELEASED && backward == PRESSED) {
         spool_inner = SERVO_STALL - HORIZONTAL_SPEED
         spool_outer = SERVO_STALL + HORIZONTAL_SPEED
+    } else if (forward == RELEASED && backward == PRESSED) {
+        spool_inner = SERVO_STALL + HORIZONTAL_SPEED
+        spool_outer = SERVO_STALL - HORIZONTAL_SPEED
     } else if (forward == RELEASED && backward == RELEASED) {
         spool_inner = Math.map(hoist, 0, 1023, SERVO_STALL - WINCH_SPEED, SERVO_STALL + WINCH_SPEED)
         spool_outer = spool_inner
